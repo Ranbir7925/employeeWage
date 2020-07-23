@@ -49,9 +49,10 @@ public class Employee{
 	}
 	public static void main(String[] args)
 	{
-		System.out.println("Welcome to Employee Wage Computation");
-		Employee object=new Employee();
-		object.monthlyWage();
+		 System.out.println("Welcome to Employee Wage Computation");
+		 Employee object=new Employee();
+		 object.monthlyWage();
 
 	}
+
 }
