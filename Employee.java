@@ -1,76 +1,46 @@
-import java.util.Random;
 public class Employee {
-	int wagePerHr = 20;
+	final static int FULL_TIME=2;
+	final static int PART_TIME=1;
+	static int dailyWage=0;
+	static int workHours=0;
+	static int totalWorkingDays=1;
+	static int totalWages=0;
+	static int totalWorkingHrs=0;
+	static String company="";
 
+	//Computes Total Wages  of an Employee in month
+	public static int ComputeWage(int wage_per_hour, int max_working_days, int max_working_hours, String company) {
+		Employee.company=company;
+		while(totalWorkingDays<=max_working_days || totalWorkingHrs<=max_working_days) {
+			int attendence = (int)(Math.random()*3);
 
-	public void checkAttendance() {
-		Random random = new Random();
-		int randomNumber = random.nextInt(2);
-		if (randomNumber == 1)
-			System.out.println("Employee is Present");
-		else
-			System.out.println("Employee is Absent");
-	}
+			switch(attendence) {
+				case FULL_TIME:
+					workHours=8;
+					break;
+				case PART_TIME:
+					workHours=4;
+					break;
+				default:
+					workHours=0;
 
-
-	public int getFullTimeWage() {
-		int fullDayhrs = 8;
-		int fullTimeWage = wagePerHr * fullDayhrs;
-		return fullTimeWage;
-	}
-
-
-	public int getPartTimeWage() {
-		int partTimeHrs = 4;
-		int partTimeWage = wagePerHr * partTimeHrs;
-		return partTimeWage;
-	}
-
-
-	public int checkEmployee(int random) {
-		switch (random) {
-			case 8:
-				return getFullTimeWage();
-			case 4:
-				return getPartTimeWage();
-			default:
-				return 0;
+			}
+			dailyWage=workHours*wage_per_hour;
+			totalWorkingHrs+=workHours;
+//            System.out.println("Daily Wage of an Employee on Day "+totalWorkingDays+" is "+dailyWage);
+			totalWorkingDays++;
 		}
+		return totalWorkingHrs*wage_per_hour;
 	}
-
-
-	public int getWorkHrs(int random) {
-		int empHr = 0;
-		switch (random) {
-			case 1:
-				return empHr = 8;
-			case 2:
-				return empHr = 4;
-			default:
-				return empHr = 0;
-		}
-	}
-
-
-	public void monthlyWage() {
-		Random rand = new Random();
-		int days = 0, monthlyWage = 0, wage = 0, totalEmpHr = 0, emphr = 0;
-
-		while (days < 20 && totalEmpHr < 100) {
-			emphr = getWorkHrs(rand.nextInt(3));
-			wage = checkEmployee(emphr);
-			monthlyWage += wage;
-			totalEmpHr += emphr;
-			days++;
-		}
-		System.out.println("Monthly Wage is: " + monthlyWage);
-		System.out.println("Total Working hrs is: " + totalEmpHr);
-	}
-
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
-		Employee object = new Employee();
-		object.monthlyWage();
+
+
+		totalWages=Employee.ComputeWage(15, 4, 10, "Apple");
+		System.out.println("Total wages of Employee in "+Employee.company+" Company ="+totalWages);
+
+		totalWages=Employee.ComputeWage(22, 18, 100, "Jio");
+		System.out.println("Total wages of Employee in "+Employee.company+" Company ="+totalWages);
+
 	}
 }
