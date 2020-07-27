@@ -1,19 +1,9 @@
 import java.util.*;
-public class Employee
+public class Employee implements EmployeeWage
 {
     int counter=0;
     int numberOfCompanies;
     CompanyEmployeeWage[] CompanyEmployeeWageArray;
-
-//
-//    public static final int isPartTime=1;
-//    public static final int isFullTime=2;
-//
-//    static int ratePerHour;
-//    static int maxHours;
-//    static int days;
-//    static int totalWage;
-//    static String company;
     Employee(int n)
     {
         this.numberOfCompanies=n;
@@ -85,6 +75,7 @@ public class Employee
         System.out.println("Enter Number of companies:");
         int noOfCompanies = sc.nextInt();
         Employee employeeWageArray = new Employee(noOfCompanies);
+
         for (int counter = 1; counter <= noOfCompanies; counter++) {
             System.out.println("Enter name of company:");
             String company = sc.next();
